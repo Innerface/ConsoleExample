@@ -21,6 +21,11 @@
 using namespace cv;
 using namespace std;
 
+///<summary>
+/// 功能:基于libcurl的get方法，返回写入指定文件
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 bool getUrl(char *filename)
 {
 	CURL *curl;
@@ -49,6 +54,12 @@ bool getUrl(char *filename)
 	}
 }
 
+
+///<summary>
+/// 功能:基于libcurl的get，返回写入临时文件，固定方式读取
+/// 作者:YuYuE
+/// 日期:201-01-08
+///</summary>   
 bool curlGet(char *url)
 {
 	CURL *curl;
@@ -76,6 +87,13 @@ bool curlGet(char *url)
 		return true;
 	}
 }
+
+
+///<summary>
+/// 功能:基于libcurl的post方法，写入指定文件
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 bool postUrl(char *filename)
 {
 	CURL *curl;
@@ -98,6 +116,12 @@ bool postUrl(char *filename)
 	return true;
 }
 
+
+///<summary>
+/// 功能:基于libcurl的post方法，返回写入临时文件，固定方式读取
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 bool curlPost(char *url, char *params)
 {
 	CURL *curl;
@@ -120,6 +144,12 @@ bool curlPost(char *url, char *params)
 	return true;
 }
 
+
+///<summary>
+/// 功能:读取文件内容
+/// 作者:YuYuE
+/// 日期:201-01-08
+///</summary>   
 void readTxt(string file)
 {
 	ifstream infile;
@@ -134,6 +164,12 @@ void readTxt(string file)
 	infile.close();             //关闭文件输入流 
 }
 
+
+///<summary>
+/// 功能:opencv经典算法之一 kmeans，K均值算法
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 int kmeans()
 {
 	const int MAX_CLUSTERS = 5;
@@ -201,6 +237,12 @@ int kmeans()
 	return 0;
 }
 
+
+///<summary>
+/// 功能:字符串转字符
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 char* string2char(string str) {
 	int nStrLength = str.length();
 	char chStr[255];
@@ -211,6 +253,12 @@ char* string2char(string str) {
 	return chStr;
 }
 
+
+///<summary>
+/// 功能:验证码处理函数，粗糙
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 int verifyCode(string sImgSrc) {
 	//Process image to extract contour
 	Mat thr, gray, con;
@@ -261,6 +309,12 @@ int verifyCode(string sImgSrc) {
 	return 0;
 }
 
+
+///<summary>
+/// 功能:链表操作方式测试
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 int testLinkList() {
 	LinkList mylist;
 	int i, j, temp, forLocate, forGet, forInsert, forDelete, a[] = { 6,8,16,2,34,56,7,10,22,45 };
@@ -310,6 +364,12 @@ int testLinkList() {
 	return 0;
 }
 
+
+///<summary>
+/// 功能:双向链表操作方式测试
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 int testDoubleLinkList() {
 	int a, e;
 	DuLinkList head, p, q;
@@ -364,6 +424,11 @@ int testDoubleLinkList() {
 	return 0;
 }
 
+///<summary>
+/// 功能:顺序链表操作方法测试
+/// 作者:YuYuE
+/// 日期:2019-01-08
+///</summary>   
 int testSqList() {
 	SqList mylist;
 	int i, j, temp, forLocate, forGet, forInsert, forDelete;
@@ -412,31 +477,46 @@ int testSqList() {
 
 int main()
 {
-	char get_chUrl[] = "http://space.local.com/admin/wechat/user/add";
-
-	//curlGet(get_chUrl);
-	//readTxt("get.txt");
-
-	//char post_chUrl[] = "http://space.local.com/api";
-	//string sToken = "n0Q9P5rhCXxfMs6auPHB4Pg1PTlHZUlC";
-	//string sMethod = "api.index";
-	//string sSign = MD5(sToken + sMethod).toString();
-	//string post_sParams = "&method="+ sMethod +"&sign="+ sSign+"&psw=xxx86";
-	//char *post_chParams = string2char(post_sParams);
-
-	//curlPost(post_chUrl,post_chParams);
-	//readTxt("post.txt");
-
-	//kmeans();
-
-	//string sImgSrc = "F:/verifyCode/verify.png";
-	//Mat img = imread(sImgSrc,1);
-	//imshow("show", img);
-	//waitKey();
-	//verifyCode(sImgSrc);
-
-	testLinkList();
-
+	string type = "link";
+	if (type == "get")
+	{
+		char get_chUrl[] = "http://space.local.com/admin/wechat/user/add";
+		curlGet(get_chUrl);
+		readTxt("get.txt");
+	}
+	else if (type == "post") {
+		char post_chUrl[] = "http://space.local.com/api";
+		string sToken = "n0Q9P5rhCXxfMs6auPHB4Pg1PTlHZUlC";
+		string sMethod = "api.index";
+		string sSign = MD5(sToken + sMethod).toString();
+		string post_sParams = "&method=" + sMethod + "&sign=" + sSign + "&psw=xxx86";
+		char *post_chParams = string2char(post_sParams);
+		curlPost(post_chUrl, post_chParams);
+		readTxt("post.txt");
+	}
+	else if (type == "md5") {
+		string sToken = "n0Q9P5rhCXxfMs6auPHB4Pg1PTlHZUlC";
+		string sMethod = "api.index";
+		string sSign = MD5(sToken + sMethod).toString();
+		cout << sSign << endl;
+	}
+	else if (type == "kmeans") {
+		kmeans();
+	}
+	else if (type == "verify") {
+		string sImgSrc = "F:/verifyCode/verify.png";
+		Mat img = imread(sImgSrc, 1);
+		imshow("show", img);
+		waitKey();
+		verifyCode(sImgSrc);
+	}
+	else if (type == "link") {
+		testLinkList();
+	}
+	else
+	{
+		cout << "nothing to do" << endl;
+	}
 	return 0;
 }
 
