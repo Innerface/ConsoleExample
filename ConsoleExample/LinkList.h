@@ -167,3 +167,24 @@ void ListVisualization_L(LinkList L, char* filename)
 	system("dot -Tpng showlinklist.dot -o showlinklist.png");
 	system("showlinklist.png");
 }
+
+void MergeList_L(LinkList La, LinkList Lb, LinkList &Lc)
+{     // 归并两个带头结点非递减有序的单链表La和lb
+// 成为一个带头结点非递减有序的单链表Lc
+	LinkList pa, pb, pc;
+	Lc = (LNode *)malloc(sizeof(LNode));      // 创建一个空的单链表Lc
+	pa = La->next; pb = Lb->next;               // pa和pb分别指向La和Lb的开始结点
+	pc = Lc;                                  // pc指向Lc的头结点
+	while (pa&&pb)                           // La和Lb均非空
+		if (pa->data <= pb->data)                  // 两表中当前元素比较
+		{
+			pc->next = pa; pa = pa->next; pc = pc->next;
+		}  // pa所指结点插入到Lc中
+		else
+		{
+			pc->next = pb; pb = pb->next; pc = pc->next;
+		}  // pb所指结点插入到Lc中
+	if (pa) pc->next = pa;                         // 链接La中的剩余结点
+	if (pb) pc->next = pb;                         // 链接Lb中的剩余结点
+	free(La);   free(Lb);                       // 释放La和lb的头结点
+}

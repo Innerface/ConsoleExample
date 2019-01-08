@@ -17,6 +17,7 @@
 #include "LinkList.h"
 #include "DuLinkList.h"
 #include "SqList.h"
+#include "Array.cpp"
 
 using namespace cv;
 using namespace std;
@@ -364,6 +365,21 @@ int testLinkList() {
 	return 0;
 }
 
+int testMergeLinkList() {
+	LNode *ha, *hb, *hc;
+	ElemType a[] = { 2,6,9,13,45 };
+	ElemType b[] = { 1,6,19,25,45,60 };
+	CreateList_L_Rear(ha, a, 5);               // 创建单链表ha
+	cout << "单链表ha：";
+	ListTraverse_L(ha);                      // 显示单链表ha
+	CreateList_L_Rear(hb, b, 6);               // 创建单链表hb
+	cout << "单链表hb：";
+	ListTraverse_L(hb);                       // 显示单链表hb
+	MergeList_L(ha, hb, hc);                    // 归并ha和hb为hc
+	cout << "归并后的单链表hc：";
+	ListTraverse_L(hc);
+	return 0;
+}
 
 ///<summary>
 /// 功能:双向链表操作方式测试
@@ -475,6 +491,18 @@ int testSqList() {
 	return 0;
 }
 
+int testArray() {
+	char str1[M], str2[N], sub[N];
+	int length;
+	cout << "请输入第一个串：";
+	cin >> str1;
+	cout << "请输入第二个串：";
+	cin >> str2;
+	length = maxsamesubstring(str1, str2, sub);
+	cout << "最长公共子串为：" << sub << "，长度为：" << length << endl;
+	return 0;
+}
+
 int main()
 {
 	string type = "link";
@@ -511,7 +539,9 @@ int main()
 		verifyCode(sImgSrc);
 	}
 	else if (type == "link") {
-		testLinkList();
+		//testLinkList();
+		//testDoubleLinkList();
+		testSqList();
 	}
 	else
 	{

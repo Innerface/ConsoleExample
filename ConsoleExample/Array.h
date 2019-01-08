@@ -1,3 +1,8 @@
+# include "stdarg.h"      // 该文件包含va_start()、va_arg()、va_end()等函数
+# include "stdlib.h"      // 该文件包含malloc()、realloc()和free()等函数
+# include "string.h"      // 该文件包含C++串的定义及相关操作
+
+typedef int ElemType;
 #define MAX_ARRAY_DIM 8 // 假设数组维数的最大值为8
 typedef struct {
    ElemType *base; // 数组元素基址，由InitArray分配

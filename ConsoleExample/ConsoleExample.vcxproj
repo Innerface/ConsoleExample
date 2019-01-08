@@ -189,6 +189,7 @@
     <ClInclude Include="TSMatrix.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="ConsoleExample.cpp" />
     <ClCompile Include="md5.cpp" />
     <ClCompile Include="pch.cpp">
