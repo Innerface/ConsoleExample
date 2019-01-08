@@ -30,6 +30,54 @@
     <ClInclude Include="SqList.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BiThrTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BiTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DSqString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ferry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GList-L.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffmanTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PatriciaTrie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SLinkString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SqQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SqStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TSMatrix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

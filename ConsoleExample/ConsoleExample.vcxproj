@@ -60,15 +60,23 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="opencvEnv.props" />
+    <Import Project="curlEnv.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="opencvEnv.props" />
+    <Import Project="curlEnv.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="opencvEnv.props" />
+    <Import Project="curlEnv.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="opencvEnv.props" />
+    <Import Project="curlEnv.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -158,11 +166,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="BiThrTree.h" />
+    <ClInclude Include="BiTree.h" />
+    <ClInclude Include="CTree.h" />
+    <ClInclude Include="DSqString.h" />
     <ClInclude Include="DuLinkList.h" />
+    <ClInclude Include="ferry.h" />
+    <ClInclude Include="GList-L.h" />
+    <ClInclude Include="GList.h" />
+    <ClInclude Include="HuffmanTree.h" />
     <ClInclude Include="LinkList.h" />
+    <ClInclude Include="LinkQueue.h" />
+    <ClInclude Include="LinkStack.h" />
     <ClInclude Include="md5.h" />
+    <ClInclude Include="PatriciaTrie.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SLinkString.h" />
     <ClInclude Include="SqList.h" />
+    <ClInclude Include="SqQueue.h" />
+    <ClInclude Include="SqStack.h" />
+    <ClInclude Include="TSMatrix.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleExample.cpp" />
