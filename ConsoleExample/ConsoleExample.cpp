@@ -18,6 +18,9 @@
 #include "DuLinkList.h"
 #include "SqList.h"
 #include "Array.h"
+#include "TSMatrix.h"
+#include "BiTree.h"
+#include "HuffmanTree.h"
 
 using namespace cv;
 using namespace std;
@@ -585,6 +588,141 @@ int testArray() {
 	return 0;
 }
 
+int testMatrix() {
+	TSMatrix A, B, C;
+	cout << "创建矩阵A：";
+	CreateSMatrix(A);                    // 创建矩阵A
+	TraverseSMatrix(A);                   // 输出矩阵A
+	CopySMatrix(A, B);                     // 由矩阵A复制矩阵B   
+	cout << "由矩阵A复制矩阵B1：" << endl;
+	TraverseSMatrix(B);                    // 输出矩阵B
+	DestroySMatrix(B);                     // 撤销矩阵B
+	cout << "创建矩阵B2：(与矩阵A的行、列数相同，行、列分别为";
+	cout << A.m << "," << A.n << ")" << endl;
+	CreateSMatrix(B);                      // 创建矩阵B
+	TraverseSMatrix(B);                    // 输出矩阵B
+	AddSMatrix(A, B, C);                      // 矩阵相加，C=A+B
+	cout << "矩阵C1(A+B)：" << endl;
+	TraverseSMatrix(C);                     // 输出矩阵C
+	SubtSMatrix(A, B, C);                     // 矩阵相减，C=A-B
+	cout << "矩阵C2(A-B)：" << endl;
+	TraverseSMatrix(C);                    // 输出矩阵C
+	TransposeSMatrix(A, C);                 // 矩阵C是矩阵A的转置矩阵
+	cout << "矩阵C3(A的转置)：" << endl;
+	TraverseSMatrix(C);                    // 输出矩阵C
+	cout << "创建矩阵A2：";
+	CreateSMatrix(A);                      // 创建矩阵A
+	TraverseSMatrix(A);                    // 输出矩阵A
+	cout << "创建矩阵B3：(行数应与矩阵A2的列数相同=" << A.n << ")" << endl;
+	CreateSMatrix(B);                      // 创建矩阵B
+	TraverseSMatrix(B);                     // 输出矩阵B
+	MultSMatrix(A, B, C);                     // 矩阵相乘，C=A×B
+	cout << "矩阵C4(A×B)：" << endl;
+	TraverseSMatrix(C);                     // 输出矩阵C
+	return 0;
+}
+typedef char TElemType;            // 定义树中元素类型TElemType为字符型
+# define MAX_BITREE_SIZE 100      // 二叉树中的最大结点数
+void Visit(TElemType e)           // 访问函数定义为输出操作
+{
+	cout << e << ' ';
+}
+
+int testBinaryTree() {
+	int i;
+	BiTree BT, p, c;
+	TElemType e1, e2;
+	InitBiTree(BT);                                  // 初始化二叉树BT
+	cout << "构造空二叉树后，树空否？" << BiTreeEmpty(BT);
+	cout << "(1：是 0：否)。树的深度=" << BiTreeDepth(BT) << endl;
+	cout << "请按先序输入二叉树(用'#'表示子树为空)：" << endl;
+	CreateBiTree(BT);                                 // 建立二叉树BT
+	cout << "建立二叉树后，树空否？" << BiTreeEmpty(BT);
+	cout << "(1：是 0：否)。树的深度=" << BiTreeDepth(BT) << endl;
+	cout << "先序递归遍历二叉树：";
+	PreOrderBiTree(BT, Visit);                          // 先序递归遍历二叉树BT
+	cout << endl << "中序递归遍历二叉树：";
+	InOrderBiTree(BT, Visit);                           // 中序递归遍历二叉树BT
+	cout << endl << "后序递归遍历二叉树：";
+	PostOrderBiTree(BT, Visit);                          // 后序递归遍历二叉树BT
+	cout << endl << "先序非递归遍历二叉树：";
+	NRPreOrderBiTree(BT, Visit);                         // 先序非递归遍历二叉树BT
+	cout << endl << "中序非递归遍历二叉树：";
+	NRInOrderBiTree(BT, Visit);                          // 中序非递归遍历二叉树BT
+	cout << endl << "后序非递归遍历二叉树：";
+	NRPostOrderBiTree(BT, Visit);                        // 后序非递归遍历二叉树BT
+	cout << endl << "层序遍历二叉树：";
+	LevelOrderBiTree(BT, Visit);                         // 层序递归遍历二叉树BT
+	cout << endl << "用凹入表的形式打印二叉树BT：" << endl;
+	PrintBiTree(BT, 1);                                  // 输出二叉树BT
+	cout << endl << "请输入一个待查结点的值：";
+	cin >> e1;
+	p = SearchBiTree(BT, e1);                              // p指向为e1的指针
+	if (p) cout << "查找成功！结点的值为：" << p->data << endl;
+	else cout << "查找失败！" << endl;
+	cout << "请输入一个待查结点的值：";
+	cin >> e2;
+	p = Parent(BT, e2);                                   // 查找e2的双亲
+	if (p) cout << e2 << "的双亲是" << p->data << endl;         // 双亲存在
+	else  cout << e2 << "没有双亲！" << endl;
+	p = LeftChild(BT, e2); // 查找e2的左孩子
+	if (p)  cout << e2 << "的左孩子是" << p->data << endl;      // 左孩子存在
+	else   cout << e2 << "没有左孩子！" << endl;
+	p = RightChild(BT, e2);                               // 查找e2的右孩子
+	if (p) cout << e2 << "的右孩子是" << p->data << endl;       // 右孩子存在
+	else  cout << e2 << "没有右孩子！" << endl;
+	p = LeftSibling(BT, e2);                              // 查找e2的左兄弟
+	if (p) cout << e2 << "的左兄弟是" << p->data << endl;        // 左兄弟存在
+	else cout << e2 << "没有左兄弟！" << endl;
+	p = RightSibling(BT, e2);                            // 查找e2的右兄弟
+	if (p) cout << e2 << "的右兄弟是" << p->data << endl;      // 右兄弟存在
+	else cout << e2 << "没有右兄弟！" << endl;
+	InitBiTree(c);                                    // 初始化二叉树c
+	cout << "请构造一个右子树为空的二叉树c：" << endl;
+	cout << "请按先序输入二叉树(用'#'表示子树为空)：";
+	CreateBiTree(c);                                // 建立二叉树c
+	cout << "树c插到树BT中，请输入树BT中树c的双亲结点的值：";
+	cin >> e1;
+	cout << "c为其左子树请输入0，为其右子树请输入1：";
+	cin >> i;
+	p = SearchBiTree(BT, e1);   // p指向二叉树BT中将作为二叉树c的双亲结点的e1
+	InsertChild(p, i, c);      // 将树c作为p的左（右）子树插入到二叉树BT中 
+	cout << "中序递归遍历插入子树c后的二叉树BT：";
+	InOrderBiTree(BT, Visit);             // 中序递归遍历二叉树BT
+	cout << endl << "删除子树，请输入待删除子树的双亲结点的值:";
+	cin >> e1;
+	cout << "删除其左子树请输入0，删除其右子树请输入1：";
+	cin >> i;
+	p = SearchBiTree(BT, e1);     // p指向二叉树BT中将作为二叉树c的双亲结点的e1
+	DeleteChild(p, i);          // 删除p所指结点(e1)的左)或右子树
+	cout << "中序递归遍历删除子树后的二叉树BT：";
+	InOrderBiTree(BT, Visit);          // 中序递归遍历二叉树BT
+	DestroyBiTree(BT);
+}
+
+# define MAXVALUE  10000       // 叶结点的权值最大值
+# define MAXBIT  10           // 最大编码位数
+int testhuffmanTree() {
+	int i, j, *w, n;
+	HuffmanTree HT;
+	HuffmanCode HC;
+	cout << "请输入权值的个数：";
+	cin >> n;
+	w = (int*)malloc(n * sizeof(int));         // 动态生成存放n个权值的空间
+	cout << "请依次输入" << n << "个权值(整型)：";
+	for (i = 0; i <= n - 1; i++)
+		cin >> w[i];                            // 依次输入权值
+	HuffmanTreeing(HT, w, n);                 // 根据w所存的n个权值构造赫夫曼树HT
+	HuffmanCoding(HT, HC, n);                 // n个赫夫曼编码存于HC
+	for (i = 0; i < n; i++)                        // 依次输出赫夫曼编码
+	{
+		cout << "Weight=" << HT[i].weight << "  Code=";
+		for (j = HC[i].start; j < MAXBIT; j++)
+			cout << HC[i].bit[j];
+		cout << endl;
+	}
+}
+
 int main()
 {
 	string type = "link";
@@ -624,7 +762,8 @@ int main()
 		//testLinkList();
 		//testDoubleLinkList();
 		//testSqList();
-		testArray();
+		//testArray();
+		testMatrix();
 	}
 	else
 	{
