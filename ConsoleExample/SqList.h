@@ -14,9 +14,6 @@ typedef struct {
 	int incrementsize;                   // 增补空间量（以ElemType为单位）
 } SqList;
 
-
-
-
 void InitList_Sq(SqList &L, int maxsize = LIST_INIT_SIZE, int incresize = LISTINCREMENT)
 {      // 构造一个最大容量为maxsize的顺序表 L
 	L.elem = (ElemType *)malloc(maxsize * sizeof(ElemType));
@@ -26,10 +23,6 @@ void InitList_Sq(SqList &L, int maxsize = LIST_INIT_SIZE, int incresize = LISTIN
 	L.listsize = maxsize;            // 该顺序表可以容纳maxsize个数据元素
 	L.incrementsize = incresize;     // 需要时可扩容incresize个元素空间
 }// InitList_Sq
-
-
-
-
 
 int ListLength_Sq(SqList L)
 {
@@ -43,20 +36,12 @@ bool ListEmpty_Sq(SqList L)
 	else return false;
 }
 
-
-
-
-
 int LocateElem_Sq(SqList L, ElemType e)
 {
 	for (int i = 0; i < L.length; i++)
 		if (L.elem[i] == e)  return i;   // 找到满足判定的数据元素为第 i 个元素
 	return -1;                     // 该线性表中不存在满足判定的数据元素
 }//LocateElem_Sq
-
-
-
-
 
 bool ListInsert_Sq(SqList &L, int i, ElemType e)
 {   // 在顺序表L的第i个元素之前插入新的元素e，
@@ -75,9 +60,6 @@ bool ListInsert_Sq(SqList &L, int i, ElemType e)
 	return true;
 }// ListInsert_Sq
 
-
-
-
 bool ListInsert_Sq_1(SqList &L, ElemType e)
 {   // 在递增有序顺序表L中插入新的元素e，
 // 若表中当前容量不足，则按预定义的增量扩容
@@ -95,9 +77,6 @@ bool ListInsert_Sq_1(SqList &L, ElemType e)
 	return true;
 }// ListInsert_Sq
 
-
-
-
 bool ListDelete_Sq(SqList &L, int i, ElemType &e)
 {      // 在顺序表L中删除第i个元素，并用e返回其值
 	int  j;
@@ -110,8 +89,6 @@ bool ListDelete_Sq(SqList &L, int i, ElemType &e)
 	return true;
 }// ListDelete_Sq
 
-
-
 bool GetElem_Sq(SqList L, int i, ElemType &e)
 {     // 取出顺序表L中第i个元素，并用e返回其值。
 	if (i<0 || i>L.length) return false;            // i值不合法
@@ -119,9 +96,6 @@ bool GetElem_Sq(SqList L, int i, ElemType &e)
 	e = L.elem[i];                                 // 被取元素的值赋给e
 	return true;
 }// GetElem_Sq  
-
-
-
 
 void ListTraverse_Sq(SqList L)
 {
@@ -131,8 +105,6 @@ void ListTraverse_Sq(SqList L)
 	cout << endl;
 }// ListTraverse_Sq
 
-
-
 void DestroyList_Sq(SqList &L)
 {       // 释放顺序表L所占存储空间
 	free(L.elem);
@@ -140,7 +112,6 @@ void DestroyList_Sq(SqList &L)
 	L.listsize = 0;
 	L.length = 0;
 }// DestroyList_Sq
-
 
 void visualization(SqList L, char* filename)
 {
@@ -161,5 +132,3 @@ void visualization(SqList L, char* filename)
 	system("dot -Tpng showsqlist.dot -o showsqlist.png");
 	system("showsqlist.png");
 }
-
-

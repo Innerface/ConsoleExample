@@ -621,8 +621,7 @@ int testMatrix() {
 	TraverseSMatrix(C);                     // 输出矩阵C
 	return 0;
 }
-typedef char TElemType;            // 定义树中元素类型TElemType为字符型
-# define MAX_BITREE_SIZE 100      // 二叉树中的最大结点数
+
 void Visit(TElemType e)           // 访问函数定义为输出操作
 {
 	cout << e << ' ';
@@ -763,7 +762,8 @@ int main()
 		//testDoubleLinkList();
 		//testSqList();
 		//testArray();
-		testMatrix();
+		//testMatrix();
+		testhuffmanTree();
 	}
 	else
 	{

@@ -1,7 +1,7 @@
 typedef struct LNode {
 	char str;
 	struct LNode *next;
-}SNode,*SLinkString;
+}SNode, *SLinkString;
 
 //串赋值操作
 void StrAssign_L(SLinkString &S, char * chars) {
@@ -140,12 +140,12 @@ bool StrInsert_L(SLinkString &S, int pos, SLinkString T) {
 	SLinkString p, q, r, h;
 	int i = 0;
 	p = S;
-	while (p&&i < pos-1) {
+	while (p&&i < pos - 1) {
 		p = p->next;
 		i++;
 	}
 	q = p->next;
-	if (i != pos-1) return false;
+	if (i != pos - 1) return false;
 	r = T->next;
 	while (r) {
 		h = (SLinkString)malloc(sizeof(LNode));
@@ -162,11 +162,11 @@ bool StrDelet_L(SLinkString &S, int pos, int len) {
 	SLinkString p = S, r, q;
 	if (len < 0 || StrLength_L(S) - pos + 1 < len) return false;
 	int i = 0;
-	while (p&&i < pos-1) {
+	while (p&&i < pos - 1) {
 		p = p->next;
 		i++;
 	}
-	if (i != pos-1) return false;
+	if (i != pos - 1) return false;
 	q = p->next;
 	for (i = 1; i <= len; i++) {
 		r = q;
@@ -210,29 +210,30 @@ void DestroyString_L(SLinkString &S) {
 	S = NULL;
 }
 void visualization(SLinkString S, char* filename)
-{   int temp;
-	FILE *stream;  
+{
+	int temp;
+	FILE *stream;
 	SLinkString p = S->next;
-    if( NULL == (stream = fopen(filename, "w")) )  
-    {  
-	   printf("open file error");  exit(0);  
-    }  
-    fprintf(stream, "digraph\n{\n node [shape = record] \n ");  
-    int i=1;
-    fprintf(stream, "S[label=\"\头节点\"]; S%d[label=\"<L>%c|<R>*\"];\n  S->S%d:L[label=\"head\"] \n; ",i,p->str,i);
+	if (NULL == (stream = fopen(filename, "w")))
+	{
+		printf("open file error");  exit(0);
+	}
+	fprintf(stream, "digraph\n{\n node [shape = record] \n ");
+	int i = 1;
+	fprintf(stream, "S[label=\"\头节点\"]; S%d[label=\"<L>%c|<R>*\"];\n  S->S%d:L[label=\"head\"] \n; ", i, p->str, i);
+	i++;
+	p = p->next;
+	while (p) {
+		fprintf(stream, "S%d[label=\"<L>%c|<R>*\"];\n S%d:R->S%d:L \n; ", i, p->str, i - 1, i, p->str);
 		i++;
-		p=p->next;
-	while(p){
-		fprintf(stream, "S%d[label=\"<L>%c|<R>*\"];\n S%d:R->S%d:L \n; ",i,p->str,i-1,i,p->str);
-		i++;
-		p=p->next;
-		if(p&&!p->next){
-			fprintf(stream, "S%d[label=\"<L>%c|<R>NULL\"];\n S%d:R->S%d:L \n; ",i,p->str,i-1,i,p->str);
-			p=p->next;
+		p = p->next;
+		if (p && !p->next) {
+			fprintf(stream, "S%d[label=\"<L>%c|<R>NULL\"];\n S%d:R->S%d:L \n; ", i, p->str, i - 1, i, p->str);
+			p = p->next;
 		}
 	}
-	fprintf(stream, "}"); 
-	fclose(stream);  
+	fprintf(stream, "}");
+	fclose(stream);
 	system("dot -Tpng show.dot -o show.png");
 	system("show.png");
 }

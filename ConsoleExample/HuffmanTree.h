@@ -1,3 +1,5 @@
+# define MAXVALUE  10000       // 叶结点的权值最大值
+# define MAXBIT  10           // 最大编码位数
 typedef struct {
  int weight;            
  int parent,lchild,rchild;
